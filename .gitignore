@@ -1,0 +1,10 @@
+node_modules
+dist
+.*
+!.*ignore*
+!.github
+!.editorconfig
+!.eslintrc.js
+!.postcssrc.js
+!.vscode
+!.prettierrc
