@@ -113,24 +113,15 @@ Before you read along, this project is the final artifact of the below steps. Yo
    dig meirg.co.il.test @192.168.0.5 # returns 192.168.0.5
    ```
 
-### Control Android Device With Google Chrome
+## Access PWA From An Android Device
 
-1. Android Device > First, [Configure your Android with Developer Options](https://developer.android.com/studio/debug/dev-options) and Allow USB Debugging. To be on the safe-side, I also downloaded and installed [Samsung Smart Switch
+All the following steps are done on the Android device
+
+1. First, [Configure your Android with Developer Options](https://developer.android.com/studio/debug/dev-options) and Allow USB Debugging. To be on the safe-side, I also downloaded and installed [Samsung Smart Switch
 ](https://www.samsung.com/us/support/owners/app/smart-switch) which includes Samsung Galaxy drivers. At this point I'm not sure if the drivers are necessary, I'll need to uninstall them to find out (TODO: uninstall drivers and see if it affects the installation)
-1. Android Device > Open WIFI settings and change the DHCP settings from Auto to Manual. Set the first DNS server records to
+1. Set your Android Device DNS settings, so it will resolve use `192.168.0.5` as the DNS server. Open WIFI settings and change the DHCP settings from Auto to Manual. Set the first DNS server records to
    1. `192.168.0.5` (the local machine which is running `dnsmasq` local DNS server)
    2. `1.1.1.1` ([Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/))
-1. Android Device > Open Google Chrome and navigate to [http://meirg.co.il.test:8080](https://meirg.co.il.test:8080/#/), it **should NOT work**, as your local dev server is exposed only to the local machine. To expose it to other machines, edit [awesome-pwa/quasar.conf.js](./awesome-pwa/quasar.conf.js), change `https: false` to
-    ```javascript
-    devServer: {
-      https: {
-        allowedHosts: ['0.0.0.0/0'],
-      },
-      port: 8080,
-      open: false // opens browser window automatically
-    },
-    // It's recommended to set it to false when using a custom domain
-    // The default window is using `localhost` and that's not what we need
-    ```
-   *NOTE*: I know we're using HTTPS, while we haven't configured anything to use, bare with me
-2. Android Device > Open Google Chrome and navigate to `http://meirg.co.il.test:8080`, it **should work**, as your 
+2. Open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080/#/), the PWA should be accessible and will reload upon changing
+
+### Controlling The Android Device With Google Chrome
