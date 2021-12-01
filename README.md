@@ -126,7 +126,9 @@ Before you read along, this project is the final artifact of the below steps. Yo
 
 ## Access PWA From Local Machine
 
+Assuming `quasar dev -m pwa` is running in the background.
 
+Everything is already set, all you gotta' do is open Google Chrome and navigate to [[http://meirg](http://meirg.co.il.test:8080/#/)]
 
 ## Access PWA From An Android Device
 
@@ -134,25 +136,85 @@ Assuming `quasar dev -m pwa` is running in the background.
 
 All the following steps are done on the Android device.
 
-1. First, [Configure your Android with Developer Options](https://developer.android.com/studio/debug/dev-options) and Allow USB Debugging. To be on the safe-side, I also downloaded and installed [Samsung Smart Switch
-](https://www.samsung.com/us/support/owners/app/smart-switch) which includes Samsung Galaxy drivers. At this point I'm not sure if the drivers are necessary, I'll need to uninstall them to find out (TODO: uninstall drivers and see if it affects the installation)
-1. Set your Android Device DNS settings, so it will resolve use `192.168.0.5` as the DNS server. Open WIFI settings and change the DHCP settings from Auto to Manual. Set the first DNS server records to
-   1. `192.168.0.5` (the local machine which is running `dnsmasq` local DNS server)
-   2. `1.1.1.1` ([Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/))
+1. Set your Android Device DNS settings, so it will resolve use `192.168.0.5` as the DNS server. 
+   1. Open WIFI settings and change the DHCP settings from Auto to Manual. 
+   2. Set the first DNS server records to
+      1. `192.168.0.5` (the local machine which is running `dnsmasq` local DNS server)
+      2. `1.1.1.1` ([Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/))
 2. Open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080/#/), the PWA should be accessible and will reload upon changing
 3. That's nice, though it's not why we're here for. Since the application is served via HTTP and **not** HTTP**S**, the app is not classified as PWA by the Android device. All the cool features of [add-to-home-screen](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen) (A2HS) and [push-notification](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Re-engageable_Notifications_Push) won't be available until we set HTTPS.
 
-## Set An HTTPS Connection Between Android Device To Local Machine
+## Set An HTTPS Connection From Local Machine To PWA
 
 First, I need a few things
 
-1. CA.pem - The [certification authority certificate](https://www.ssl.com/faqs/what-is-a-certificate-authority/#:~:text=A%20certificate%20authority%20(CA)%2C,the%20issuance%20of%20electronic%20documents)
-2. CA.key - The private key to sign HTTPS messages
+1. CA.key - The private key of the [Certification Authority](https://www.ssl.com/faqs/what-is-a-certificate-authority/#:~:text=A%20certificate%20authority%20(CA)%2C,the%20issuance%20of%20electronic%20documents) (CA).
+2. CA.pem - The CA **certificate**, installed on local machine (macOS/Linux/WSL2)
+3. CA.der.pem - The [DER format](https://knowledge.digicert.com/quovadis/ssl-certificates/ssl-general-topics/what-is-der-format.html#:~:text=DER%20files%20are%20digital%20certificates,of%20the%20ASCII%20PEM%20format.&text=A%20DER%20file%20should%20not,often%20used%20with%20Java%20platforms.) of the CA **certificate**, which will be installed on the Android device.
 
 The **standard** process is
 
 ![ca-diagram](https://d1smxttentwwqu.cloudfront.net/wp-content/uploads/2019/07/ca-diagram-b.png)
 
-Though in our case, we skip the 
+Though in our case, we skip the CSR and hardcode the domain in the CA certificate
 
-### Controlling The Android Device With Google Chrome
+1. I've created a convinience script which does the following
+   1. Creates the directory [awesome-pwa/.certs](./awesome-pwa/.certs), this directory **should not be committed** to this repo.
+   2. Generates the required files `CA.key`, `CA.pem`, `CA.crt` (per domain) and the converted format `CA.der.crt` to be installed on the Android device. The script is based on this [stackoverflow answer](https://android.stackexchange.com/a/238859/363870)
+2. Run the convinient script to generate the required files
+   ```bash
+   # Replace domain name
+   ./scripts/generate_ca.sh "meirg.co.il"
+   ```
+
+   ```bash
+   Country Name (2 letter code) []: IL 
+   Organization Name: meirg
+   Common Name (eg, fully qualified host name) []: meirg.co.il.test
+   ```
+2. The next step is to tell Quasar's `devServer` [awesome-pwa/quasar.conf.js](./awesome-pwa/quasar.conf.js) to serve HTTPS and use the generated certificate and key.
+   ```js
+    devServer: {
+      https: {
+        cert: '.certs/CA.crt',
+        key: '.certs/CA.key',
+      },
+      port: 443,
+      open: false
+    },
+   ```
+3. The final step is to install the generated `CA.crt` certificate on your local machine so it can trust the certificate that the PWA is using
+   - macOS
+     ```
+     sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" "awesome-pwa/.certs/CA.crt"
+     ```
+1. Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
+
+## Set An HTTPS Connection From An Android Device To PWA
+
+Previously, we generated `CA.der.crt`, this file is the one that should be installed the Android Device.
+
+1. Local Machine > Upload `awesome-pwa/.certs/CA.der.crt` to Google Drive
+2. Android Device > Download `CA.der.crt` from Google Drive
+3. Android Device > Settings > Search "CA Certificate" > Install anyway > Select and install `CA.der.crt` from local storage
+4. Android Device > Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
+1. From time to time, you might face an infinite loop, I'm not sure what's the cause of it, but I fix it by stopping and starting the dev server
+2. I'm able to install the PWA on my Android device
+
+**TIP**: To view the installed certificates, in the settings, search for `User certificates` 
+
+TODO: Add images
+
+## Controlling The Android Device With Google Chrome
+
+1. First, [Configure your Android with Developer Options](https://developer.android.com/studio/debug/dev-options) and Allow USB Debugging. To be on the safe-side, I also downloaded and installed [Samsung Smart Switch
+](https://www.samsung.com/us/support/owners/app/smart-switch) which includes Samsung Galaxy drivers. At this point I'm not sure if the drivers are necessary, I'll need to uninstall them to find out (TODO: uninstall drivers and see if it affects the installation)
+1. Connect your Android device to the local machine with a USB cable
+   - macOS - I used my macOS charger cable to connect since that's only cable I got with TypeC to TypeC
+2. Open Chrome and navigate to Chrome's `chrome://inspect#devices` page, see [Remote debug Android devices](https://developer.chrome.com/docs/devtools/remote-debugging/)
+3. (WIP) The Android device device should appear on the list, so click `inspect` to view the contents of the mobile phone, on the local machine's display. It's like using your Android device as an emulator, though stuff is happening for real.
+
+
+## Useful Resources
+
+- https://developer.chrome.com/docs/devtools/progressive-web-apps/
