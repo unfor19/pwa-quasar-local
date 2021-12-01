@@ -95,16 +95,27 @@ Before you read along, this project is the final artifact of the below steps. Yo
    # Change "meirg.co.il" with your domain and "192.168.0.5" with your local network IP address
    address=/meirg.co.il.test/192.168.0.5
    ```
-5. Restart `dnsmasq` by stopping and starting it
-   ```bash
-   sudo brew services stop dnsmasq
-   sudo brew services start dnsmasq
-   ```
-1. Flush (refresh) DNS
-   ```
-   sudo killall -HUP mDNSResponder
-   ```
-2. Check your local DNS server
+5. Map the local domain `meirg.co.il.test` to our local machine `192.168.0.5`
+   - macOS - Create the directory "test" under /etc/resolver, see https://vninja.net/2020/02/06/macos-custom-dns-resolvers/ - any domain under `*.test` will resolve to `192.168.0.5` which is 
+      ```bash
+      sudo mkdir -p /etc/resolver/test
+      ```
+   - WSL2/Linux - Edit `/etc/hosts` file
+      ```bash
+      meirg.co.il.test 192.168.0.5
+      ```
+6. Restart `dnsmasq` by stopping and starting it
+   - macOS
+      ```bash
+      sudo brew services stop dnsmasq
+      sudo brew services start dnsmasq
+      ```
+7. Flush (refresh) DNS
+   - macOS
+      ```
+      sudo killall -HUP mDNSResponder
+      ```
+8. Check your local DNS server
    ```bash
    # This is what happens when you use the default DNS server
    dig meirg.co.il.test # returns a.root-servers.net. nstld.verisign-grs.com. 2021113002 1800 900 604800 86400
@@ -113,9 +124,15 @@ Before you read along, this project is the final artifact of the below steps. Yo
    dig meirg.co.il.test @192.168.0.5 # returns 192.168.0.5
    ```
 
+## Access PWA From Local Machine
+
+
+
 ## Access PWA From An Android Device
 
-All the following steps are done on the Android device
+Assuming `quasar dev -m pwa` is running in the background.
+
+All the following steps are done on the Android device.
 
 1. First, [Configure your Android with Developer Options](https://developer.android.com/studio/debug/dev-options) and Allow USB Debugging. To be on the safe-side, I also downloaded and installed [Samsung Smart Switch
 ](https://www.samsung.com/us/support/owners/app/smart-switch) which includes Samsung Galaxy drivers. At this point I'm not sure if the drivers are necessary, I'll need to uninstall them to find out (TODO: uninstall drivers and see if it affects the installation)
@@ -123,5 +140,19 @@ All the following steps are done on the Android device
    1. `192.168.0.5` (the local machine which is running `dnsmasq` local DNS server)
    2. `1.1.1.1` ([Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/))
 2. Open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080/#/), the PWA should be accessible and will reload upon changing
+3. That's nice, though it's not why we're here for. Since the application is served via HTTP and **not** HTTP**S**, the app is not classified as PWA by the Android device. All the cool features of [add-to-home-screen](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen) (A2HS) and [push-notification](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Re-engageable_Notifications_Push) won't be available until we set HTTPS.
+
+## Set An HTTPS Connection Between Android Device To Local Machine
+
+First, I need a few things
+
+1. CA.pem - The [certification authority certificate](https://www.ssl.com/faqs/what-is-a-certificate-authority/#:~:text=A%20certificate%20authority%20(CA)%2C,the%20issuance%20of%20electronic%20documents)
+2. CA.key - The private key to sign HTTPS messages
+
+The **standard** process is
+
+![ca-diagram](https://d1smxttentwwqu.cloudfront.net/wp-content/uploads/2019/07/ca-diagram-b.png)
+
+Though in our case, we skip the 
 
 ### Controlling The Android Device With Google Chrome
