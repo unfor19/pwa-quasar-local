@@ -214,6 +214,12 @@ TODO: Add images
 2. Open Chrome and navigate to Chrome's `chrome://inspect#devices` page, see [Remote debug Android devices](https://developer.chrome.com/docs/devtools/remote-debugging/)
 3. (WIP) The Android device device should appear on the list, so click `inspect` to view the contents of the mobile phone, on the local machine's display. It's like using your Android device as an emulator, though stuff is happening for real.
 
+## Conclusions
+
+1. During the process I realized I can't use `test.meirg.co.il`, and I must use `meirg.co.il.test`, this is because I'm on macOS, I need to map all `*.test` traffic via the local DNS server (dnsmasq), and the trick is to use `/etc/resolver/test` to do that. On Linux/WSL2, or even Windows, it's way easier, you can simply change the `/etc/hosts` file and that's it.
+2. Remote debugging does not work on WIFI, even though I enabled it on my Android device, so I must use a USB cable to make it work. I wonder if I'm doing something wrong.
+3. I need to read/write a blog post about CA, I feel like this subject is still not 100% clear to me.
+4. The application is not 100% stable in hot-reload mode and I still need to figure out why.
 
 ## Useful Resources
 
