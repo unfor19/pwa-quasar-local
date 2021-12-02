@@ -121,12 +121,14 @@ Before you read along, this project is the final artifact of the below steps. Yo
 
 ## Setup A Local DNS Server
 
+*IMPORTANT*: When using Docker, follow **only** the instructions marked with 🐳.
+
 1. We need a local DNS server to trick everyone on the local network to think that `https://meirg.co.il.test` is actually my local machine network address, which is `192.168.0.5` at the moment of writing.
 2. I chose [dnsmasq](https://wiki.debian.org/dnsmasq) for the job, but I'm sure any other option is valid. On macOS, use [brew](https://formulae.brew.sh/) to install [dnsmasq](https://formulae.brew.sh/formula/dnsmasq). If you're on Windows, I suggest you use [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install) (TODO: Add docs for WSL2)
    ```
    brew install macOS
    ```
-3. Check your local machine network IP address
+3. 🐳 Check your local machine network IP address
    ```bash
    ipconfig getifaddr en0
    # Mine is 192.168.0.5
@@ -142,7 +144,7 @@ Before you read along, this project is the final artifact of the below steps. Yo
    # Change "meirg.co.il" with your domain and "192.168.0.5" with your local network IP address
    address=/meirg.co.il.test/192.168.0.5
    ```
-5. Map the local domain `meirg.co.il.test` to our local machine `192.168.0.5`
+5. 🐳 Map the local domain `meirg.co.il.test` to our local machine `192.168.0.5`
    - macOS - Create the directory "test" under /etc/resolver, see https://vninja.net/2020/02/06/macos-custom-dns-resolvers/ - any domain under `*.test` will resolve to `192.168.0.5` which is 
       ```bash
       sudo mkdir -p /etc/resolver/test
@@ -157,12 +159,12 @@ Before you read along, this project is the final artifact of the below steps. Yo
       sudo brew services stop dnsmasq
       sudo brew services start dnsmasq
       ```
-7. Flush (refresh) DNS
+7. 🐳 Flush (refresh) DNS
    - macOS
       ```
       sudo killall -HUP mDNSResponder
       ```
-8. Check your local DNS server
+8. 🐳 Check your local DNS server
    ```bash
    # This is what happens when you use the default DNS server
    dig meirg.co.il.test # returns a.root-servers.net. nstld.verisign-grs.com. 2021113002 1800 900 604800 86400
