@@ -12,6 +12,7 @@ env:
   DOCKER_ORG: unfor19
   DOCKER_REPO: awesome-pwa
   DOCKER_BUILD_CONTEXT: awesome-pwa
+  PURGE_CACHE: 4
   # Required secrets:
   # - DOCKERHUB_USERNAME
   # - DOCKERHUB_TOKEN
@@ -56,9 +57,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-v2-${{ matrix.DOCKER_BUILD_TARGET }}-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ env.PURGE_CACHE }}-${{ matrix.DOCKER_BUILD_TARGET }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-v2-${{ matrix.DOCKER_BUILD_TARGET }}-
+            ${{ runner.os }}-buildx-${{ env.PURGE_CACHE }}-${{ matrix.DOCKER_BUILD_TARGET }}-
       - name: Build Docker Image
         uses: docker/build-push-action@v2
         with:
