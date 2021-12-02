@@ -37,12 +37,13 @@ _DOMAIN_CERT_EXPIRE_DAYS="${DOMAIN_CERT_EXPIRE_DAYS:-"3650"}"
 if [[ "$_SKIP_ROOTCA_KEY" != "true" ]]; then
   if [[ ! -f "$_ROOTCA_KEY_PATH" ]]; then
     echo "Generating private key for rootCA"
+    # 2048 bit key is hardcoded no purpose - https://expeditedsecurity.com/blog/measuring-ssl-rsa-keys/
     openssl genrsa -out "$_ROOTCA_KEY_PATH" 2048
   fi
   if [[ ! -f "$_ROOTCA_PEM_PATH" ]]; then
     echo "Generating the rootCA Certificate ${_ROOTCA_PEM_PATH} and signing it with the private key ${_ROOTCA_KEY_PATH}"
     openssl req -new \
-    -days 3650 \
+    -days "$_ROOTCA_CERT_EXPIRE_DAYS" \
     -key "$_ROOTCA_KEY_PATH" \
     -out "$_ROOTCA_PEM_PATH" \
     -subj "/CN=${_FQDN}/"
@@ -68,7 +69,7 @@ echo "rootCA signs the certifcate with ${_ROOTCA_KEY_PATH}"
 echo "rootCA generates the CA certificate ${_DOMAIN_CRT_PATH}"
 # -extfile is for Android, as x509 needs to be CA:true and include DNS name
 openssl x509 -req \
-  -days 3650 \
+  -days "$_ROOTCA_CERT_EXPIRE_DAYS" \
   -in "$_ROOTCA_PEM_PATH" \
   -signkey "$_ROOTCA_KEY_PATH" \
   -extfile "$_X509V3_CONFIG_PATH" \
