@@ -163,7 +163,10 @@ All the following steps are done on the Android device.
    1. Open WIFI settings and change the DHCP settings from Auto to Manual. 
    2. Set DNS records to
       1. `192.168.0.5` - The local machine which is running `dnsmasq` local DNS server
-      2. `1.1.1.1` - [Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/) to enable internet access in case `dnsmasq` is not responding
+      2. `1.1.1.1` - [Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/) to enable internet access in case `dnsmasq` is not responding   
+   <span>
+      <img title="Set DNS records on android" src="https://assets.meirg.co.il/pwa-quasar-local/android-set-dns-records.png" alt="android-set-dns-records" width="180px"/>
+   </span>
 2. Open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080/#/), the PWA should be accessible and will reload upon changing the application's source code
 3. That's nice, though it's not why we're here for. Since the application is served via HTTP and **not** HTTP**S**, the app is not classified as PWA by the Android device. All the cool features of [add-to-home-screen](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen) (A2HS) and [push-notification](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Re-engageable_Notifications_Push) won't be available until we set HTTPS.
 
@@ -171,7 +174,9 @@ All the following steps are done on the Android device.
 
 The **standard** process for generating a [CA certificate](https://stackoverflow.com/a/61422058/5285732) is demonstrated in the below diagram.
 
-![ca-diagram](https://d1smxttentwwqu.cloudfront.net/wp-content/uploads/2019/07/ca-diagram-b.png)
+<div>
+<img src="https://d1smxttentwwqu.cloudfront.net/wp-content/uploads/2019/07/ca-diagram-b.png" alt="ca-diagram" title="CA Diagram" width="700px" />
+</div>
 
 > Image Source: [https://www.ssl.com/faqs/what-is-a-certificate-authority/](https://www.ssl.com/faqs/what-is-a-certificate-authority/)
 
@@ -210,13 +215,21 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
 1. Local Machine > Upload `awesome-pwa/.certs/meirg.co.il.test.der.crt` to Google Drive
 2. Android Device > Download `meirg.co.il.test.der.crt` from Google Drive
 3. Android Device > Settings > Search "CA Certificate" > Install anyway > Select and install `meirg.co.il.test.der.crt` from local storage
+      
+   <span>
+      <img title="Android Install CA certificate anyway" src="https://assets.meirg.co.il/pwa-quasar-local/android-install-ca-anyway.jpg" alt="android-install-ca-anyway" width="180px"/>
+   </span>
+   <span>
+      <img title="Android Select CA certificate" src="https://assets.meirg.co.il/pwa-quasar-local/android-select-ca.png" alt="android-select-ca" width="180px"/>
+   </span>
+   <span>
+      <img title="Android Installed CA certificate" src="https://assets.meirg.co.il/pwa-quasar-local/android-installed-ca-certificate.jpg" alt="android-installed-ca-certificate" width="180px"/>
+   </span>   
 4. Android Device > Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
-1. From time to time, you might face an infinite loop, I'm not sure what's the cause of it, but I fix it by stopping and starting the dev server
-2. I'm able to install the PWA on my Android device
+5. From time to time, you might face an infinite loop, I'm not sure what's the cause of it, but I fix it by stopping and starting the dev server
+6. I'm able to install the PWA on my Android device
 
 **TIP**: To view the installed certificates, in the settings, search for `User certificates` 
-
-TODO: Add images
 
 ## Controlling The Android Device With Google Chrome
 
