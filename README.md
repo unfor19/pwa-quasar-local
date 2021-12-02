@@ -225,9 +225,7 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
    <span>
       <img title="Android Installed CA certificate" src="https://assets.meirg.co.il/pwa-quasar-local/android-installed-ca-certificate.jpg" alt="android-installed-ca-certificate" width="180px"/>
    </span>   
-4. Android Device > Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
-5. From time to time, you might face an infinite loop, I'm not sure what's the cause of it, but I fix it by stopping and starting the dev server
-6. I'm able to install the PWA on my Android device
+4. Android Device > Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS, see [final-results](#final-result)
 
 **TIP**: To view the installed certificates, in the settings, search for `User certificates` 
 
