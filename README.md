@@ -268,7 +268,10 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
 ## Useful Resources
 
 - https://developer.chrome.com/docs/devtools/progressive-web-apps/
-
+- https://www.baeldung.com/openssl-self-signed-cert
+- https://security.stackexchange.com/questions/20803/how-does-ssl-tls-work
+- https://en.wikipedia.org/wiki/X.509
+- https://www.digicert.com/kb/ssl-support/openssl-quick-reference-guide.htm
 
 ## Authors
 
