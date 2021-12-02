@@ -62,6 +62,8 @@ FROM base as app
 WORKDIR /usr/src/app/
 COPY --from=builder /usr/src/app/dist/pwa ./
 
+# TODO: Add Express.js web-server
+
 EXPOSE 8080
 EXPOSE 443
 ### ---------------------------------------------------
