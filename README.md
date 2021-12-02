@@ -154,6 +154,8 @@ The **standard** process is
 
 ![ca-diagram](https://d1smxttentwwqu.cloudfront.net/wp-content/uploads/2019/07/ca-diagram-b.png)
 
+> Image Source: [https://www.ssl.com/faqs/what-is-a-certificate-authority/](https://www.ssl.com/faqs/what-is-a-certificate-authority/)
+
 Though in our case, we skip the CSR and hardcode the domain in the CA certificate
 
 1. I've created a convinience script which does the following
