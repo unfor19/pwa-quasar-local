@@ -63,7 +63,9 @@ DNS.1 = ${_FQDN}
 EOF
 
 
-echo "Generating certificate for ${_FQDN}"
+echo "Applicant generates CSR with ${_ROOTCA_PEM_PATH}, though no CSR file will be generated"
+echo "rootCA signs the certifcate with ${_ROOTCA_KEY_PATH}"
+echo "rootCA generates the CA certificate ${_DOMAIN_CRT_PATH}"
 # -extfile is for Android, as x509 needs to be CA:true and include DNS name
 openssl x509 -req \
   -days 3650 \

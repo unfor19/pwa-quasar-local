@@ -156,11 +156,10 @@ The **standard** process is
 
 > Image Source: [https://www.ssl.com/faqs/what-is-a-certificate-authority/](https://www.ssl.com/faqs/what-is-a-certificate-authority/)
 
-Though in our case, we skip the CSR and hardcode the domain in the CA certificate
-
 1. I've created a convinience script which does the following
    1. Creates the directory [awesome-pwa/.certs](./awesome-pwa/.certs), this directory **should not be committed** to this repo.
-   2. Generates the required files `CA.key`, `CA.pem`, `CA.crt` (per domain) and the converted format `CA.der.crt` to be installed on the Android device. The script is based on this [stackoverflow answer](https://android.stackexchange.com/a/238859/363870)
+   2. Generates the required files `rootCA.key`, `rootCA.pem`, `${FQDN}.crt` (per domain) and the converted format `${FQDN}.der.crt` to be installed on the Android device. The script is based on this [stackoverflow answer](https://android.stackexchange.com/a/238859/363870)
+   3. Prints a `Usage` message
 2. Run the convinient script to generate the required files
    ```bash
    # Replace domain name
