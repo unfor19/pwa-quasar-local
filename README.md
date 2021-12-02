@@ -7,25 +7,25 @@ The main goal is to run an application in hot-reload mode, and make it available
 ## Final result
 
 <span>
-   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-add-to-home-screen.png" alt="android-pwa-add-to-home-screen" width="180px"/>
+   <img title="Add to Home Screen works" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-add-to-home-screen.png" alt="android-pwa-add-to-home-screen" width="180px"/>
 </span>
 <span>
-   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-clicked-a2hs.jpg" alt="android-pwa-clicked-a2hs" width="180px"/>
+   <img title="Clicked Add to Home Screen" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-clicked-a2hs.jpg" alt="android-pwa-clicked-a2hs" width="180px"/>
 </span>
 <span>
-   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-clicked-a2hs-install.jpg" alt="android-clicked-a2hs-install" width="180px"/>
+   <img title="Click install" src="https://assets.meirg.co.il/pwa-quasar-local/android-clicked-a2hs-install.jpg" alt="android-clicked-a2hs-install" width="180px"/>
 </span>
 <span>
-   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-after-installing-pwa.jpg" alt="android-after-installing-pwa" width="180px"/>
+   <img title="After installing PWA"  src="https://assets.meirg.co.il/pwa-quasar-local/android-after-installing-pwa.jpg" alt="android-after-installing-pwa" width="180px"/>
 </span>
 <span>
-   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-apps-list.png" alt="android-pwa-apps-list" width="180px"/>
+   <img title="PWA in device apps list" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-apps-list.png" alt="android-pwa-apps-list" width="180px"/>
 </span>
 <span>
-   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-splashscreen.jpg" alt="android-pwa-splashscreen" width="180px"/>
+   <img title="PWA splashscreen" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-splashscreen.jpg" alt="android-pwa-splashscreen" width="180px"/>
 </span>
 <span>
-   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-loaded.jpg" alt="android-pwa-loaded" width="180px"/>
+   <img title="PWA loaded after installation" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-loaded.jpg" alt="android-pwa-loaded" width="180px"/>
 </span>
 
 
