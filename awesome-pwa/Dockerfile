@@ -10,6 +10,7 @@ ARG ALPINE_VERSION="3.13"
 ### Base Image
 ### ---------------------------------------------------
 FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} as base
+RUN apk add --update apk-tools==2.12.7-r0
 ### ---------------------------------------------------
 
 
@@ -17,7 +18,7 @@ FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} as base
 ### Development Server
 ### ---------------------------------------------------
 FROM base as dev
-RUN apk add --update bash dnsmasq curl
+RUN apk add --update bash dnsmasq curl openssl==1.1.1l-r0
 RUN yarn global add @quasar/cli
 ENV PATH="$(yarn global bin):$PATH"
 
