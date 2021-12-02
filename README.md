@@ -65,7 +65,8 @@ Instead of installing the above requirements and [dnsmasq](https://thekelleys.or
 
 1. Docker build image
    ```bash
-   docker build -t unfor19/awesome-pwa:dev --target dev  .
+   cd awesome-pwa
+   docker build -t unfor19/awesome-pwa:dev --target dev .
    ```
 2. Docker run container - Replace FQDN and IP address according to local network IP address.
    ```bash
