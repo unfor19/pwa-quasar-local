@@ -70,9 +70,7 @@ Before you read along, this project is the final artifact of the below steps. Yo
    2. [Open Chrome DevTools](https://developer.chrome.com/docs/devtools/open/#last)
    3. Application > Service Workers > Tick [Bypass for network](https://whatwebcando.today/articles/use-chrome-dev-tools-switches/)
 
-## PWA Available To Physical Android Device
-
-### Setup A Local DNS Server
+## Setup A Local DNS Server
 
 1. We need a local DNS server to trick everyone on the local network to think that `https://meirg.co.il.test` is actually my local machine network address, which is `192.168.0.5` at the moment of writing.
 2. I chose [dnsmasq](https://wiki.debian.org/dnsmasq) for the job, but I'm sure any other option is valid. On macOS, use [brew](https://formulae.brew.sh/) to install [dnsmasq](https://formulae.brew.sh/formula/dnsmasq). If you're on Windows, I suggest you use [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install) (TODO: Add docs for WSL2)
@@ -128,7 +126,7 @@ Before you read along, this project is the final artifact of the below steps. Yo
 
 Assuming `quasar dev -m pwa` is running in the background.
 
-Everything is already set, all you gotta' do is open Google Chrome and navigate to [[http://meirg](http://meirg.co.il.test:8080/#/)]
+Everything is already set, all you gotta' do is open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080)
 
 ## Access PWA From An Android Device
 
