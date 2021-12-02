@@ -2,5 +2,7 @@
   "extends": "@quasar/app/tsconfig-preset",
   "compilerOptions": {
     "baseUrl": "."
-  }
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.vue"],
+  "exclude": ["node_modules", ".quasar", "dist", "./src/**/*.js", "./*.js"]
 }
