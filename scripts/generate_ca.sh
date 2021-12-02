@@ -23,7 +23,6 @@ pushd "$_CERTS_DIR_PATH" || exit
 _SKIP_ROOTCA_KEY="${SKIP_ROOT_CA_KEY:-"false"}"
 _ROOTCA_KEY_PATH="${ROOTCA_KEY_PATH:-"rootCA.key"}"
 _ROOTCA_PEM_PATH="${CERT_OUT_PATH:-"rootCA.pem"}"
-_ROOTCA_CONFIG_PATH="${ROOTCA_CONFIG_PATH:-"rootCA_config.ext"}"
 _ROOTCA_CERT_EXPIRE_DAYS="${ROOTCA_CERT_EXPIRE_DAYS:-"3650"}"
 _X509V3_CONFIG_PATH="${X509V3_CONFIG_PATH:-"x509v3_config.ext"}"
 
@@ -76,7 +75,7 @@ openssl x509 -req \
 
 
 # Convert the 'crt' certificate to DER format
-echo "Converting CA.crt to DER format for ${_FQDN}"
+echo "Converting ${_DOMAIN_CRT_DER_PATH} to DER format for ${_FQDN}"
 openssl x509 -inform PEM -outform DER -in "$_DOMAIN_CRT_PATH" -out "$_DOMAIN_CRT_DER_PATH"
 
 echo "
