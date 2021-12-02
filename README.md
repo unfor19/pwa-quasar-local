@@ -136,10 +136,10 @@ All the following steps are done on the Android device.
 
 1. Set your Android Device DNS settings, so it will resolve use `192.168.0.5` as the DNS server. 
    1. Open WIFI settings and change the DHCP settings from Auto to Manual. 
-   2. Set the first DNS server records to
-      1. `192.168.0.5` (the local machine which is running `dnsmasq` local DNS server)
-      2. `1.1.1.1` ([Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/))
-2. Open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080/#/), the PWA should be accessible and will reload upon changing
+   2. Set DNS records to
+      1. `192.168.0.5` - The local machine which is running `dnsmasq` local DNS server
+      2. `1.1.1.1` - [Cloudflare DNS](https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/) to enable internet access in case `dnsmasq` is not responding
+2. Open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080/#/), the PWA should be accessible and will reload upon changing the application's source code
 3. That's nice, though it's not why we're here for. Since the application is served via HTTP and **not** HTTP**S**, the app is not classified as PWA by the Android device. All the cool features of [add-to-home-screen](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen) (A2HS) and [push-notification](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Re-engageable_Notifications_Push) won't be available until we set HTTPS.
 
 ## Set An HTTPS Connection From Local Machine To PWA
@@ -150,13 +150,11 @@ The **standard** process for generating a [CA certificate](https://stackoverflow
 
 > Image Source: [https://www.ssl.com/faqs/what-is-a-certificate-authority/](https://www.ssl.com/faqs/what-is-a-certificate-authority/)
 
-
-
 1. For local development purposes, we're playing every role in the above diagram, this is why I created a "convinience script" which does the following:
    1. Creates the directory [awesome-pwa/.certs](./awesome-pwa/.certs), this directory **should not be committed** to this repo.
    2. Generates the required files `rootCA.key`, `rootCA.pem`, `${FQDN}.crt` (per domain) and the converted format `${FQDN}.der.crt` to be installed on the Android device. The script is based on this [stackoverflow answer](https://android.stackexchange.com/a/238859/363870)
    3. Prints a `Usage` message
-2. Run the convinient script to generate the required files
+2. Execute the "convinience script" to generate the desired keys and certificates
    ```bash
    # Replace domain name
    ./scripts/generate_ca.sh "meirg.co.il"
