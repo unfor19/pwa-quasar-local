@@ -150,7 +150,7 @@ The **standard** process for generating a [CA certificate](https://stackoverflow
 
 > Image Source: [https://www.ssl.com/faqs/what-is-a-certificate-authority/](https://www.ssl.com/faqs/what-is-a-certificate-authority/)
 
-1. For local development purposes, we're playing every role in the above diagram, this is why I created a "convinience script" which does the following:
+1. For local development purposes, we're playing both the Applicant and CA roles, this is why I created a "convinience script" which does the following:
    1. Creates the directory `awesome-pwa/.certs`, this directory **should not be committed** to this repo.
    2. Generates the required files `rootCA.key`, `rootCA.pem`, `${FQDN}.crt` (per domain) and the converted format `${FQDN}.der.crt` to be installed on the Android device. The script is based on this [stackoverflow answer](https://android.stackexchange.com/a/238859/363870)
    3. Prints a `Usage` message
