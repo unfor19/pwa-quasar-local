@@ -209,6 +209,21 @@ TODO: Add images
 3. I need to read/write a blog post about CA, I feel like this subject is still not 100% clear to me.
 4. The application is not 100% stable in hot-reload mode and I still need to figure out why.
 
+## Troubleshooting
+
+- `DNS_PROBE_FINISHED_NXDOMAIN` - The client cannot resolve DNS entry `meirg.co.il.test`; The local DNS server, `dnsmasq`, is not set in the client's device. Fix by running `dnsmasq` and setting the DNS server records of the client properly
+  ```bash
+  # Run dnsmasq
+  sudo brew services start dnsmasq
+  # Set DNS server in client device, for example, 192.168.0.5
+  ```
+- `ERR_CONNECTION_REFUSED` - Client resolved DNS so `dnsmasq` works, but the server is not online, fix by running local `quasar dev` server
+  ```bash
+  cd awesome-pwa
+  yarn serve
+  ```
+- `Your connection is not private` - Client doesn't have the `meirg.co.il.crt` installed on the local machine, or `meirg.co.il.der.crt` installed on the Android device. Fix by installing the certificates as instructed in [access-pwa-from-local-machine](#access-pwa-from-local-machine) and [access-pwa-from-an-android-device](#access-pwa-from-an-android-device).
+
 ## Useful Resources
 
 - https://developer.chrome.com/docs/devtools/progressive-web-apps/
