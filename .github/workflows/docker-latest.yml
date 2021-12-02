@@ -28,11 +28,6 @@ jobs:
             DOCKER_TAG_ONLY: dev
             NODE_VERSION: 14.17.0
             ALPINE_VERSION: 3.13
-          - DOCKERFILE_PATH: Dockerfile
-            DOCKER_BUILD_TARGET: app
-            DOCKER_TAG_ONLY: app
-            NODE_VERSION: 14.17.0
-            ALPINE_VERSION: 3.13
     steps:
       - uses: actions/checkout@v2
       - name: Prepare
