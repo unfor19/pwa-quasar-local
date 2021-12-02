@@ -60,6 +60,8 @@ This is how it all happened - documenting my learning process for future me
 
 ### Docker
 
+Instead of installing the above requirements and [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html), you can use [Docker](https://docs.docker.com/get-docker/) to simplify the process.
+
 1. Docker build image
    ```bash
    docker build -t unfor19/awesome-pwa:dev --target dev  .
