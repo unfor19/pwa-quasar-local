@@ -37,7 +37,7 @@ ENTRYPOINT [ "/usr/src/app/entrypoint.dev.sh" ]
 ### ---------------------------------------------------
 ### Build App - Artifacts in /usr/src/app/dist/pwa/
 ### ---------------------------------------------------
-FROM base as build
+FROM base as app
 
 # Create app directory
 WORKDIR /usr/src/app
