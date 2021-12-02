@@ -81,8 +81,8 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: {
-        cert: '.certs/CA.crt',
-        key: '.certs/CA.key',
+        cert: '.certs/meirg.co.il.test.crt',
+        key: '.certs/rootCA.key',
       },
       port: 443,
       open: false
