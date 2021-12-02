@@ -11,7 +11,7 @@ FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} as base
 ### Build the application
 ### ---------------------------------------------------
 FROM base as dev
-RUN apk add --update bash dnsmasq
+RUN apk add --update bash dnsmasq curl
 RUN yarn global add @quasar/cli
 
 WORKDIR /usr/src/app
@@ -24,7 +24,6 @@ EXPOSE 443
 # For dnsmasq
 EXPOSE 53/udp
 ENTRYPOINT [ "/usr/src/app/entrypoint.dev.sh" ]
-CMD ["meirg.co.il.test", "192.168.0.5"]
 ### ---------------------------------------------------
 
 ### ---------------------------------------------------
