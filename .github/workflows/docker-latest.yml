@@ -11,6 +11,7 @@ on:
 env:
   DOCKER_ORG: unfor19
   DOCKER_REPO: awesome-pwa
+  DOCKER_BUILD_CONTEXT: awesome-pwa
   # Required secrets:
   # - DOCKERHUB_USERNAME
   # - DOCKERHUB_TOKEN
@@ -59,7 +60,7 @@ jobs:
       - name: Build Docker Image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ${{ env.DOCKER_BUILD_CONTEXT }}
           platforms: linux/amd64
           builder: ${{ steps.buildx.outputs.name }}
           file: ${{ matrix.Dockerfile }}
@@ -82,7 +83,7 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ${{ env.DOCKER_BUILD_CONTEXT }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
