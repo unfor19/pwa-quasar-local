@@ -19,6 +19,7 @@ FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} as base
 FROM base as dev
 RUN apk add --update bash dnsmasq curl
 RUN yarn global add @quasar/cli
+ENV PATH="$(yarn global bin):$PATH"
 
 WORKDIR /usr/src/app
 # docker build -t unfor19/awesome-pwa:dev --target dev  .
@@ -37,7 +38,9 @@ ENTRYPOINT [ "/usr/src/app/entrypoint.dev.sh" ]
 ### ---------------------------------------------------
 ### Build App - Artifacts in /usr/src/app/dist/pwa/
 ### ---------------------------------------------------
-FROM base as app
+FROM base as builder
+RUN yarn global add @quasar/cli
+ENV PATH="$(yarn global bin):$PATH"
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -49,4 +52,16 @@ RUN  yarn install
 # Build app
 COPY . .
 RUN  yarn build
+### ---------------------------------------------------
+
+
+### ---------------------------------------------------
+### App
+### ---------------------------------------------------
+FROM base as app
+WORKDIR /usr/src/app/
+COPY --from=builder /usr/src/app/dist/pwa ./
+
+EXPOSE 8080
+EXPOSE 443
 ### ---------------------------------------------------
