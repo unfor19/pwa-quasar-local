@@ -1,5 +1,10 @@
 # pwa-quasar-local
 
+[![CC BY 4.0][cc-by-shield]](https://github.com/unfor19/pwa-quasar-local/blob/master/LICENSE)
+
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+
+
 This project demonstrates how to develop a [Progressive Web Application](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) (PWA) locally on an Android device, using the [Quasar Framework v2](https://quasar.dev/).
 
 The main goal is to run an application in hot-reload mode, and make it available to a physical Android device. I'm using Android (Samsung Galaxy S10, [Android 11](https://en.wikipedia.org/wiki/Android_11)), but I'm sure there's a way to tweak this project to make it work on iOS.
@@ -263,3 +268,12 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
 ## Useful Resources
 
 - https://developer.chrome.com/docs/devtools/progressive-web-apps/
+
+
+## Authors
+
+Created and maintained by [Meir Gabay](https://github.com/unfor19)
+
+## License
+
+This project is licensed under the [CC Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/) License - see the [LICENSE](https://github.com/unfor19/pwa-quasar-local/blob/master/LICENSE) file for details
