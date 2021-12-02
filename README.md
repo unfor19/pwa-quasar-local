@@ -164,37 +164,31 @@ Though in our case, we skip the CSR and hardcode the domain in the CA certificat
    # Replace domain name
    ./scripts/generate_ca.sh "meirg.co.il"
    ```
-
-   ```bash
-   Country Name (2 letter code) []: IL 
-   Organization Name: meirg
-   Common Name (eg, fully qualified host name) []: meirg.co.il.test
-   ```
-2. The next step is to tell Quasar's `devServer` [awesome-pwa/quasar.conf.js](./awesome-pwa/quasar.conf.js) to serve HTTPS and use the generated certificate and key.
+3. The next step is to tell Quasar's `devServer` [awesome-pwa/quasar.conf.js](./awesome-pwa/quasar.conf.js) to serve HTTPS and use the generated CA certificate and rootCA key.
    ```js
     devServer: {
       https: {
-        cert: '.certs/CA.crt',
-        key: '.certs/CA.key',
+        cert: '.certs/meirg.co.il.test.crt',
+        key: '.certs/rootCA.key',
       },
       port: 443,
       open: false
     },
    ```
-3. The final step is to install the generated `CA.crt` certificate on your local machine so it can trust the certificate that the PWA is using
+4. The final step is to install the generated `meirg.co.il.test.crt` certificate on your local machine so it can trust the certificate that the PWA is using
    - macOS
      ```
-     sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" "awesome-pwa/.certs/CA.crt"
+     sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" "awesome-pwa/.certs/meirg.co.il.test.crt"
      ```
-1. Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
+5. Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
 
 ## Set An HTTPS Connection From An Android Device To PWA
 
-Previously, we generated `CA.der.crt`, this file is the one that should be installed the Android Device.
+Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that should be installed the Android Device.
 
-1. Local Machine > Upload `awesome-pwa/.certs/CA.der.crt` to Google Drive
-2. Android Device > Download `CA.der.crt` from Google Drive
-3. Android Device > Settings > Search "CA Certificate" > Install anyway > Select and install `CA.der.crt` from local storage
+1. Local Machine > Upload `awesome-pwa/.certs/meirg.co.il.test.der.crt` to Google Drive
+2. Android Device > Download `meirg.co.il.test.der.crt` from Google Drive
+3. Android Device > Settings > Search "CA Certificate" > Install anyway > Select and install `meirg.co.il.test.der.crt` from local storage
 4. Android Device > Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
 1. From time to time, you might face an infinite loop, I'm not sure what's the cause of it, but I fix it by stopping and starting the dev server
 2. I'm able to install the PWA on my Android device
