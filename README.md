@@ -58,8 +58,25 @@ This is how it all happened - documenting my learning process for future me
 4. [Google Chrome](https://www.google.com/chrome/) for viewing the PWA and [controlling remote devices](https://developer.chrome.com/docs/devtools/remote-debugging/), such as the target Android device.
 4. (Optional) I'm using [Visual Studio Code](https://code.visualstudio.com/), which makes the whole development process very easy. Especially the linting and auto-formatting.
 
-TODO: Add Dockerfile
+### Docker
 
+Instead of installing the above requirements and [dnsmasq](https://thekelleys.org.uk/dnsmasq/doc.html), you can use [Docker](https://docs.docker.com/get-docker/) to simplify the process.
+
+1. Docker build image
+   ```bash
+   docker build -t unfor19/awesome-pwa:dev --target dev  .
+   ```
+2. Docker run container - Replace FQDN and IP address according to local network IP address.
+   ```bash
+   # Executes quasar dev --mode pwa
+   # Waits for build process to complete and prints App URL
+   # In the background - runs dnsmasq local DNS server
+   docker run --rm -it \
+      -p 8080:8080 \
+      -p 443:443 \
+      -p 53:53/udp \
+      -v "$PWD":/usr/src/app unfor19/awesome-pwa:dev "meirg.co.il.test" "192.168.0.5"
+   ```
 ## PWA with hot-reload via HTTP
 
 Before you read along, this project is the final artifact of the below steps. You can clone/fork this project, or even generate a GitHub repository from this project, and simply move on to the [Usage](#usage) section.

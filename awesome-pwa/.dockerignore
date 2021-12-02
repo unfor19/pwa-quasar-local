@@ -1,0 +1,13 @@
+**
+!public
+!src
+!src-pwa
+!.eslintignore
+!.eslintrc.js
+!.postcssrc.js
+!prettirrc
+!babel.config.js
+!package*.json
+!quasar.conf.js
+!tsconfig.json
+!yarn.lock
