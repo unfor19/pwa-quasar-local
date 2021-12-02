@@ -1,4 +1,4 @@
-# pwa-quasar-local
+# pwa-quasar-local <!-- omit in toc -->
 
 [![CC BY 4.0][cc-by-shield]](https://github.com/unfor19/pwa-quasar-local/blob/master/LICENSE) [![Push to Docker Registries](https://github.com/unfor19/pwa-quasar-local/actions/workflows/docker-latest.yml/badge.svg)](https://github.com/unfor19/pwa-quasar-local/actions/workflows/docker-latest.yml) [![Dockerhub pulls](https://img.shields.io/docker/pulls/unfor19/awesome-pwa)](https://hub.docker.com/r/unfor19/awesome-pwa)
 
@@ -10,7 +10,7 @@ This project demonstrates how to develop a [Progressive Web Application](https:/
 
 The main goal is to run an application in hot-reload mode, and make it available to a physical Android device. I'm using Android (Samsung Galaxy S10, [Android 11](https://en.wikipedia.org/wiki/Android_11)), but I'm sure there's a way to tweak this project to make it work on iOS.
 
-## Final result
+## Final result <!-- omit in toc -->
 
 <span>
    <img title="Add to Home Screen works" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-add-to-home-screen.png" alt="android-pwa-add-to-home-screen" width="180px"/>
@@ -34,6 +34,31 @@ The main goal is to run an application in hot-reload mode, and make it available
    <img title="PWA loaded after installation" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-loaded.jpg" alt="android-pwa-loaded" width="180px"/>
 </span>
 
+<hr>
+
+
+## Table Of Contents <!-- omit in toc -->
+
+- [Challenges](#challenges)
+- [Requirements](#requirements)
+  - [Local Installation](#local-installation)
+  - [Docker](#docker)
+- [PWA with hot-reload via HTTP](#pwa-with-hot-reload-via-http)
+- [Setup A Local DNS Server](#setup-a-local-dns-server)
+- [Access PWA From Local Machine](#access-pwa-from-local-machine)
+- [Access PWA From An Android Device](#access-pwa-from-an-android-device)
+- [Set An HTTPS Connection From Local Machine To PWA](#set-an-https-connection-from-local-machine-to-pwa)
+- [Set An HTTPS Connection From An Android Device To PWA](#set-an-https-connection-from-an-android-device-to-pwa)
+- [Controlling The Android Device With Google Chrome](#controlling-the-android-device-with-google-chrome)
+- [Conclusions](#conclusions)
+- [Troubleshooting](#troubleshooting)
+- [Useful Resources](#useful-resources)
+- [Authors](#authors)
+- [License](#license)
+
+
+<hr>
+
 
 ## Challenges
 
@@ -44,7 +69,11 @@ This is how it all happened - documenting my learning process for future me
 3. The [requirements for running a PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Installable_PWAs#requirements) are very restricting when it comes to HTTPS and local development. Quasar makes it possible to use [HTTPS for local development out-of-the-box](https://quasar.dev/quasar-cli/quasar-conf-js#property-devserver). Unforuneately, the [HTTPS trick works for https://localhost](https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/), so how can an Android device access this "local network address" and load the PWA? I have a way to mask `localhost` with a desired domain so it'll be `https://test.meirg.co.il`, but that still doesn't solve the problem of making it accesible to other devices on the local network.
 4. Let's get to business
 
+<hr>
+
 ## Requirements
+
+### Local Installation
 
 1. [NodeJS v14.17.0+](https://nodejs.org/en/download/current/)
 2. [yarn](https://classic.yarnpkg.com/lang/en/docs/install)
@@ -79,6 +108,10 @@ Instead of installing the above requirements and [dnsmasq](https://thekelleys.or
       -p 53:53/udp \
       -v "$PWD":/usr/src/app unfor19/awesome-pwa:dev "meirg.co.il.test" "192.168.0.5"
    ```
+
+<hr>
+
+
 ## PWA with hot-reload via HTTP
 
 Before you read along, this project is the final artifact of the below steps. You can clone/fork this project, or even generate a GitHub repository from this project, and simply move on to the [Usage](#usage) section.
@@ -118,6 +151,8 @@ Before you read along, this project is the final artifact of the below steps. Yo
    1. Navigate to [http://localhost:8080/#/](http://localhost:8080/#/)
    2. [Open Chrome DevTools](https://developer.chrome.com/docs/devtools/open/#last)
    3. Application > Service Workers > Tick [Bypass for network](https://whatwebcando.today/articles/use-chrome-dev-tools-switches/)
+
+<hr>
 
 ## Setup A Local DNS Server
 
@@ -173,11 +208,15 @@ Before you read along, this project is the final artifact of the below steps. Yo
    dig meirg.co.il.test @192.168.0.5 # returns 192.168.0.5
    ```
 
+<hr>
+
 ## Access PWA From Local Machine
 
 Assuming `quasar dev -m pwa` is running in the background.
 
 Everything is already set, all you gotta' do is open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080)
+
+<hr>
 
 ## Access PWA From An Android Device
 
@@ -195,6 +234,8 @@ All the following steps are done on the Android device.
    </span>
 2. Open Google Chrome and navigate to [http://meirg.co.il.test:8080](http://meirg.co.il.test:8080/#/), the PWA should be accessible and will reload upon changing the application's source code
 3. That's nice, though it's not why we're here for. Since the application is served via HTTP and **not** HTTP**S**, the app is not classified as PWA by the Android device. All the cool features of [add-to-home-screen](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen) (A2HS) and [push-notification](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Re-engageable_Notifications_Push) won't be available until we set HTTPS.
+
+<hr>
 
 ## Set An HTTPS Connection From Local Machine To PWA
 
@@ -234,6 +275,8 @@ The **standard** process for generating a [CA certificate](https://stackoverflow
    **IMPORTANT**: The certificate **must be installed with** `-r trustRoot` to make the OS trust the certificate and the Certification Authurity (CA). Trusting the CA is required since it's a self-signed certificate, and our `rootCA` is considered as a non-trusted CA by the OS. If you install the certificate `meirg.co.il.test.crt` by double clicking it, it will be marked as "not trusted" by the OS, as the `rootCA` is not trusted by the OS.
 5. Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
 
+<hr>
+
 ## Set An HTTPS Connection From An Android Device To PWA
 
 Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that should be installed the Android Device.
@@ -255,6 +298,8 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
 
 **TIP**: To view the installed certificates, in the settings, search for `User certificates` 
 
+<hr>
+
 ## Controlling The Android Device With Google Chrome
 
 1. First, [Configure your Android with Developer Options](https://developer.android.com/studio/debug/dev-options) and Allow USB Debugging. To be on the safe-side, I also downloaded and installed [Samsung Smart Switch
@@ -264,12 +309,16 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
 2. Open Chrome and navigate to Chrome's `chrome://inspect#devices` page, see [Remote debug Android devices](https://developer.chrome.com/docs/devtools/remote-debugging/)
 3. (WIP) The Android device device should appear on the list, so click `inspect` to view the contents of the mobile phone, on the local machine's display. It's like using your Android device as an emulator, though stuff is happening for real.
 
+<hr>
+
 ## Conclusions
 
 1. During the process I realized I can't use `test.meirg.co.il`, and I must use `meirg.co.il.test`, this is because I'm on macOS, I need to map all `*.test` traffic via the local DNS server (dnsmasq), and the trick is to use `/etc/resolver/test` to do that. On Linux/WSL2, or even Windows, it's way easier, you can simply change the `/etc/hosts` file and that's it.
 2. Remote debugging does not work on WIFI, even though I enabled it on my Android device, so I must use a USB cable to make it work. I wonder if I'm doing something wrong.
 3. I need to read/write a blog post about CA, I feel like this subject is still not 100% clear to me.
 4. The application is not 100% stable in hot-reload mode and I still need to figure out why.
+
+<hr>
 
 ## Troubleshooting
 
@@ -286,6 +335,8 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
   ```
 - `Your connection is not private` - Client doesn't have the `meirg.co.il.crt` installed on the local machine, or `meirg.co.il.der.crt` installed on the Android device. Fix by installing the certificates as instructed in [access-pwa-from-local-machine](#access-pwa-from-local-machine) and [access-pwa-from-an-android-device](#access-pwa-from-an-android-device).
 
+<hr>
+
 ## Useful Resources
 
 - https://developer.chrome.com/docs/devtools/progressive-web-apps/
@@ -293,6 +344,8 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
 - https://security.stackexchange.com/questions/20803/how-does-ssl-tls-work
 - https://en.wikipedia.org/wiki/X.509
 - https://www.digicert.com/kb/ssl-support/openssl-quick-reference-guide.htm
+
+<hr>
 
 ## Authors
 
