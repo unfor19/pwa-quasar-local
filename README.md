@@ -13,7 +13,7 @@ The main goal is to run an application in hot-reload mode, and make it available
    <img title="Clicked Add to Home Screen" src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-clicked-a2hs.jpg" alt="android-pwa-clicked-a2hs" width="180px"/>
 </span>
 <span>
-   <img title="Click install" src="https://assets.meirg.co.il/pwa-quasar-local/android-clicked-a2hs-install.jpg" alt="android-clicked-a2hs-install" width="180px"/>
+   <img title="Clicked install" src="https://assets.meirg.co.il/pwa-quasar-local/android-clicked-a2hs-install.jpg" alt="android-clicked-a2hs-install" width="180px"/>
 </span>
 <span>
    <img title="After installing PWA"  src="https://assets.meirg.co.il/pwa-quasar-local/android-after-installing-pwa.jpg" alt="android-after-installing-pwa" width="180px"/>
