@@ -144,12 +144,6 @@ All the following steps are done on the Android device.
 
 ## Set An HTTPS Connection From Local Machine To PWA
 
-First, I need a few things
-
-1. CA.key - The private key of the [Certification Authority](https://www.ssl.com/faqs/what-is-a-certificate-authority/#:~:text=A%20certificate%20authority%20(CA)%2C,the%20issuance%20of%20electronic%20documents) (CA).
-2. CA.pem - The CA **certificate**, installed on local machine (macOS/Linux/WSL2)
-3. CA.der.pem - The [DER format](https://knowledge.digicert.com/quovadis/ssl-certificates/ssl-general-topics/what-is-der-format.html#:~:text=DER%20files%20are%20digital%20certificates,of%20the%20ASCII%20PEM%20format.&text=A%20DER%20file%20should%20not,often%20used%20with%20Java%20platforms.) of the CA **certificate**, which will be installed on the Android device.
-
 The **standard** process is
 
 ![ca-diagram](https://d1smxttentwwqu.cloudfront.net/wp-content/uploads/2019/07/ca-diagram-b.png)
