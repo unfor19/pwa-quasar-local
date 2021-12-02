@@ -4,6 +4,31 @@ This project demonstrates how to develop a [Progressive Web Application](https:/
 
 The main goal is to run an application in hot-reload mode, and make it available to a physical Android device. I'm using Android (Samsung Galaxy S10, [Android 11](https://en.wikipedia.org/wiki/Android_11)), but I'm sure there's a way to tweak this project to make it work on iOS.
 
+## Final result
+
+<span>
+   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-add-to-home-screen.png" alt="android-pwa-add-to-home-screen" width="180px"/>
+</span>
+<span>
+   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-clicked-a2hs.jpg" alt="android-pwa-clicked-a2hs" width="180px"/>
+</span>
+<span>
+   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-clicked-a2hs-install.jpg" alt="android-clicked-a2hs-install" width="180px"/>
+</span>
+<span>
+   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-after-installing-pwa.jpg" alt="android-after-installing-pwa" width="180px"/>
+</span>
+<span>
+   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-apps-list.png" alt="android-pwa-apps-list" width="180px"/>
+</span>
+<span>
+   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-splashscreen.jpg" alt="android-pwa-splashscreen" width="180px"/>
+</span>
+<span>
+   <img src="https://assets.meirg.co.il/pwa-quasar-local/android-pwa-loaded.jpg" alt="android-pwa-loaded" width="180px"/>
+</span>
+
+
 ## Challenges
 
 This is how it all happened - documenting my learning process for future me
