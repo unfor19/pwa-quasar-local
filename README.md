@@ -144,13 +144,15 @@ All the following steps are done on the Android device.
 
 ## Set An HTTPS Connection From Local Machine To PWA
 
-The **standard** process is
+The **standard** process for generating a [CA certificate](https://stackoverflow.com/a/61422058/5285732) is demonstrated in the below diagram.
 
 ![ca-diagram](https://d1smxttentwwqu.cloudfront.net/wp-content/uploads/2019/07/ca-diagram-b.png)
 
 > Image Source: [https://www.ssl.com/faqs/what-is-a-certificate-authority/](https://www.ssl.com/faqs/what-is-a-certificate-authority/)
 
-1. I've created a convinience script which does the following
+
+
+1. For local development purposes, we're playing every role in the above diagram, this is why I created a "convinience script" which does the following:
    1. Creates the directory [awesome-pwa/.certs](./awesome-pwa/.certs), this directory **should not be committed** to this repo.
    2. Generates the required files `rootCA.key`, `rootCA.pem`, `${FQDN}.crt` (per domain) and the converted format `${FQDN}.der.crt` to be installed on the Android device. The script is based on this [stackoverflow answer](https://android.stackexchange.com/a/238859/363870)
    3. Prints a `Usage` message
