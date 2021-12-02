@@ -38,9 +38,11 @@ jobs:
         id: prepare
         run: |
           set -x
-          DOCKER_TAG_LATEST=${DOCKER_ORG}/${DOCKER_REPO}:${{ matrix.DOCKER_TAG_ONLY }}
+          DOCKER_ORG_REPO="${DOCKER_ORG}/${DOCKER_REPO}"
+          echo ::set-output name=docker_org_repo::${DOCKER_ORG_REPO}
+          DOCKER_TAG_LATEST=${DOCKER_ORG_REPO}:${{ matrix.DOCKER_TAG_ONLY }}
           echo ::set-output name=docker_tag_latest::${DOCKER_TAG_LATEST}
-          DOCKER_TAG_RELEASE=${DOCKER_ORG}/${DOCKER_REPO}:${{ matrix.DOCKER_TAG_ONLY }}-${GITHUB_SHA:0:8}
+          DOCKER_TAG_RELEASE=${DOCKER_ORG_REPO}:${{ matrix.DOCKER_TAG_ONLY }}-${GITHUB_SHA:0:8}
           echo ::set-output name=docker_tag_release::${DOCKER_TAG_RELEASE}
           set +x
       - name: Set up QEMU
@@ -81,13 +83,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Push to DockerHub
-        uses: docker/build-push-action@v2
-        with:
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ${{ steps.prepare.outputs.docker_tag_latest }}
-            ${{ steps.prepare.outputs.docker_tag_release }}
+        run: |
+          docker image push --all-tags ${{ steps.prepare.outputs.docker_org_repo }}
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
