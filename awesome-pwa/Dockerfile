@@ -21,6 +21,7 @@ RUN apk add --update bash dnsmasq curl
 RUN yarn global add @quasar/cli
 
 WORKDIR /usr/src/app
+# docker build -t unfor19/awesome-pwa:dev --target dev  .
 # docker run --rm -it -p 8080:8080 -p 443:443 -p 53:53/udp -v "$PWD":/usr/src/app unfor19/awesome-pwa:dev
 
 # Application
