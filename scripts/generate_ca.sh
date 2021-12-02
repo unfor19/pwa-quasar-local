@@ -13,6 +13,7 @@ _SUFFIX="${SUFFIX:-"test"}"
 if [[ -z "$_DOMAIN" ]]; then
     echo "[ERR] Required variable: DOMAIN"
 fi
+_FQDN="${FQDN:-"${_DOMAIN}.${_SUFFIX}"}"
 
 
 _CERTS_DIR_PATH="${CERTS_DIR_PATH:-"awesome-pwa/.certs"}"
@@ -26,7 +27,7 @@ _ROOTCA_PEM_PATH="${CERT_OUT_PATH:-"rootCA.pem"}"
 _ROOTCA_CERT_EXPIRE_DAYS="${ROOTCA_CERT_EXPIRE_DAYS:-"3650"}"
 _X509V3_CONFIG_PATH="${X509V3_CONFIG_PATH:-"x509v3_config.ext"}"
 
-_FQDN="${FQDN:-"${_DOMAIN}.${_SUFFIX}"}"
+
 _DOMAIN_CRT_PATH="${DOMAIN_CRT_PATH:-"${_FQDN}.crt"}"
 _DOMAIN_CRT_DER_PATH="${DOMAIN_CRT_DER_PATH:-"${_FQDN}.der.crt"}"
 _DOMAIN_CERT_EXPIRE_DAYS="${DOMAIN_CERT_EXPIRE_DAYS:-"3650"}"
