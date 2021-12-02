@@ -46,7 +46,7 @@ if [[ "$_SKIP_ROOTCA_KEY" != "true" ]]; then
     -days "$_ROOTCA_CERT_EXPIRE_DAYS" \
     -key "$_ROOTCA_KEY_PATH" \
     -out "$_ROOTCA_PEM_PATH" \
-    -subj "/CN=${_FQDN}/"
+    -subj "/C=IL/CN=${_FQDN}/O=rootCaOrg"
   fi
 fi
 
@@ -112,7 +112,7 @@ devServer: {
 ### Install ${_DOMAIN_CRT_PATH} certificate on local machine
 
 - macOS
-sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain \"${_DOMAIN_CRT_PATH}\"
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain \"${_CERTS_DIR_PATH}/${_DOMAIN_CRT_PATH}\"
 
 
 ### Install ${_DOMAIN_CRT_DER_PATH} certificate on Android device    
