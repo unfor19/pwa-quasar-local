@@ -175,6 +175,7 @@ The **standard** process for generating a [CA certificate](https://stackoverflow
      ```
      sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" "awesome-pwa/.certs/meirg.co.il.test.crt"
      ```
+   **IMPORTANT**: The certificate **must be installed with** `-r trustRoot` to make the OS trust the certificate and the Certification Authurity (CA). Trusting the CA is required since it's a self-signed certificate, and our `rootCA` is considered as a non-trusted CA by the OS. If you install the certificate `meirg.co.il.test.crt` by double clicking it, it will be marked as "not trusted" by the OS, as the `rootCA` is not trusted by the OS.
 5. Open Chrome browser and navigate to [https://meirg.co.il.test](https://meirg.co.il.test), the PWA should be served properly via HTTPS
 
 ## Set An HTTPS Connection From An Android Device To PWA
