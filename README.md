@@ -1,6 +1,6 @@
 # pwa-quasar-local <!-- omit in toc -->
 
-[![CC BY 4.0][cc-by-shield]](https://github.com/unfor19/pwa-quasar-local/blob/master/LICENSE) [![Push to Docker Registries](https://github.com/unfor19/pwa-quasar-local/actions/workflows/docker-latest.yml/badge.svg)](https://github.com/unfor19/pwa-quasar-local/actions/workflows/docker-latest.yml) [![Dockerhub pulls](https://img.shields.io/docker/pulls/unfor19/awesome-pwa)](https://hub.docker.com/r/unfor19/awesome-pwa)
+[![Push to Docker Registries](https://github.com/unfor19/pwa-quasar-local/actions/workflows/docker-latest.yml/badge.svg)](https://github.com/unfor19/pwa-quasar-local/actions/workflows/docker-latest.yml) [![Dockerhub pulls](https://img.shields.io/docker/pulls/unfor19/awesome-pwa)](https://hub.docker.com/r/unfor19/awesome-pwa) [![CC BY 4.0][cc-by-shield]](https://github.com/unfor19/pwa-quasar-local/blob/master/LICENSE) 
 
 
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
