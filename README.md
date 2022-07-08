@@ -161,7 +161,7 @@ Before you read along, this project is the final artifact of the below steps. Yo
 1. We need a local DNS server to trick everyone on the local network to think that `https://meirg.co.il.test` is actually my local machine network address, which is `192.168.0.5` at the moment of writing.
 2. I chose [dnsmasq](https://wiki.debian.org/dnsmasq) for the job, but I'm sure any other option is valid. On macOS, use [brew](https://formulae.brew.sh/) to install [dnsmasq](https://formulae.brew.sh/formula/dnsmasq). If you're on Windows, I suggest you use [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install) (TODO: Add docs for WSL2)
    ```
-   brew install macOS
+   brew install dnsmasq
    ```
 3. 🐳 Check your local machine network IP address
    ```bash
