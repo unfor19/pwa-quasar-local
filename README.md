@@ -170,7 +170,7 @@ Before you read along, this project is the final artifact of the below steps. Yo
    ```
 4. Edit dnsmasq config, and add map a domain to your local network address
    ```bash
-   vim /usr/local/etc/dnsmasq.conf
+   vim /opt/homebrew/etc/dnsmasq.conf
    ```
 
    ```bash
