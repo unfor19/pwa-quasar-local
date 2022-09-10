@@ -1,8 +1,8 @@
 ### ---------------------------------------------------
 ### Global Arguments
 ### ---------------------------------------------------
-ARG NODE_VERSION="16.15.0"
-ARG ALPINE_VERSION="3.15"
+ARG NODE_VERSION="18.9.0"
+ARG ALPINE_VERSION="3.16"
 ### ---------------------------------------------------
 
 
@@ -10,7 +10,7 @@ ARG ALPINE_VERSION="3.15"
 ### Base Image
 ### ---------------------------------------------------
 FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} as base
-RUN apk add --update apk-tools zlib>1.2.12-r2
+RUN apk add --update apk-tools
 ### ---------------------------------------------------
 
 
