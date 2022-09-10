@@ -51,6 +51,7 @@ The main goal is to run an application in hot-reload mode, and make it available
 - [Set An HTTPS Connection From An Android Device To PWA](#set-an-https-connection-from-an-android-device-to-pwa)
 - [Controlling The Android Device With Google Chrome](#controlling-the-android-device-with-google-chrome)
 - [Conclusions](#conclusions)
+- [Local Development](#local-development)
 - [Troubleshooting](#troubleshooting)
 - [Useful Resources](#useful-resources)
 - [Authors](#authors)
@@ -84,6 +85,10 @@ This is how it all happened - documenting my learning process for future me
 3. [quasar cli](https://quasar.dev/quasar-cli/installation) - see [yarn global](https://classic.yarnpkg.com/en/docs/cli/global/) if you're using [nodemon](https://www.npmjs.com/package/nodemon)
    ```bash
    yarn global add @quasar/cli
+   ```
+   Install NPM packages
+   ```bash
+   cd awesome-pwa && yarn install
    ```
 4. [Google Chrome](https://www.google.com/chrome/) for viewing the PWA and [controlling remote devices](https://developer.chrome.com/docs/devtools/remote-debugging/), such as the target Android device.
 4. (Optional) I'm using [Visual Studio Code](https://code.visualstudio.com/), which makes the whole development process very easy. Especially the linting and auto-formatting.
@@ -320,6 +325,26 @@ Previously, we generated `meirg.co.il.test.der.crt`, this file is the one that s
 
 <hr>
 
+## Local Development
+
+All commands are invoked from the `awesome-pwa` directory.
+
+1. Change dir
+   ```bash
+   cd awesome-pwa
+   ```
+2. Install depenendcies
+   ```bash
+   yarn install
+   ```
+3. Build PWA app
+   ```bash
+   yarn build
+   ```
+4. Build SPA app
+   ```bash
+   yarn build:spa
+   ```
 ## Troubleshooting
 
 - `DNS_PROBE_FINISHED_NXDOMAIN` - The client cannot resolve DNS entry `meirg.co.il.test`; The local DNS server, `dnsmasq`, is not set in the client's device. Fix by running `dnsmasq` and setting the DNS server records of the client properly
