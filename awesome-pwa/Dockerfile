@@ -10,7 +10,7 @@ ARG ALPINE_VERSION="3.15"
 ### Base Image
 ### ---------------------------------------------------
 FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} as base
-RUN apk add --update apk-tools
+RUN apk add --update apk-tools zlib>1.2.12-r2
 ### ---------------------------------------------------
 
 
